@@ -46,7 +46,7 @@
 					</div>
 				</div>
 			</div>
-		</div><!-- #blueprint-container -->
+		</div><!-- container -->
 	</body>
 	<!--[if IE]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>

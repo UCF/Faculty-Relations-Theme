@@ -1,4 +1,5 @@
 <?php get_header();?>
+<?php global $post; ?>
 <?php $options = get_option(THEME_OPTIONS_NAME);?>
 <?php $page    = get_page_by_title('Home');?>
 
@@ -16,38 +17,34 @@
 <?php endif;?>
 
     <div class="container">
-        <div class="page-content" id="home" data-template="home-description">
-            <div class="row">
-                <div class="site-image span8">
-                    <?php $image = wp_get_attachment_image($options['site_image'], 'homepage')?>
-                    <?php if($image):?>
-                        <?=$image?>
-                    <?php else:?>
-                        <img width="770" src="<?=THEME_IMG_URL?>/default-site-image-540.jpg">
-                    <?php endif;?>
-                </div>
-
-                <div class="right-column span4 last">
-                    <?php $description = $options['site_description'];?>
-                    <?php if($description):?>
-                        <div class="description">
-                            <p><?=$description?></p>
+        <div class="page-content" id="home">
+            <?php $home_links = get_posts( array ( 'numberposts' => '-1', 'post_type' => 'page', 'meta_key' => 'page_home_link', 'meta_value' => 'on', 'orderby' => 'menu_order', 'order' => 'ASC')); ?>
+            <?php if(count($home_links)): ?>
+                <div class="row home-links">
+                <?php foreach($home_links as $key => $post): setup_postdata($post); ?>
+                    <?php $key++; ?>
+                    <div class="span4">
+                        <div class="home-link <?php echo($key % 3 == 0 ? '': 'side-bar') ?>">
+                            <?php the_post_thumbnail(); ?><br />
+                            <?=the_title(); ?><br />
+                            <?=get_post_meta(get_the_ID(), 'page_home_description', true); ?>
                         </div>
-                    <?php endif;?>
-
-                    <div class="search">
-                        <?php get_search_form();?>
+                    </div>
+                    <?php if($key % 3 == 0): ?>
+                </div>
+                        <?php if($key < count($home_links)): ?>
+                <div class="row home-links">
+                        <?php endif; ?>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+                </div>
+            <?php else: ?>
+                <div class="row">
+                    <div class="span12">
+                        <p>No homepage links available.</p>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="bottom span12">
-                    <?php $content = str_replace(']]>', ']]&gt;', apply_filters('the_content', $page->post_content));?>
-                    <?php if($content):?>
-                        <?=$content?>
-                    <?php endif;?>
-                </div>
-            </div>
+            <?php endif; ?>
         </div>
     </div>
     <div id="events-header" class="wide">

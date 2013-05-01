@@ -153,4 +153,8 @@ select#UCFHBHeaderLinks {
 #home-description{background-color: #ddd; font-size: 25px; line-height: 35px; color: #737373; padding-top: 10px; padding-bottom: 10px;}
 
 #events-header{background-color: #fdde60; font-size: 20px;}
-#events-header .container{padding-top: 10px; padding-bottom: 10px;}
+#events-header .container{margin-top: 20px; padding-top: 10px; padding-bottom: 10px;}
+
+#home .home-links{margin-top: 20px;}
+#home .home-links .side-bar{border-right: solid 1px #ffd333;}
+#home .home-links .home-link{text-align: center;}

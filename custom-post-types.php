@@ -475,7 +475,7 @@ class Page extends CustomPostType {
 		$new_item       = 'New Page',
 		$public         = True,
 		$use_editor     = True,
-		$use_thumbnails = False,
+		$use_thumbnails = True,
 		$use_order      = True,
 		$use_title      = True,
 		$use_metabox    = True,
@@ -484,18 +484,30 @@ class Page extends CustomPostType {
 	public function fields() {
 		$prefix = $this->options('name').'_';
 		return array(
+            array(
+                'name' => 'Homepage Link',
+                'desc' => 'If checked this will display a link on the homepage below the menu.',
+                'id'   => $prefix.'home_link',
+                'type' => 'checkbox',
+            ),
+            array(
+                'name' => 'Homepage Link Description',
+                'desc' => 'This description will be placed under the title of the homepage link.',
+                'id'   => $prefix.'home_description',
+                'type' => 'text',
+            ),
 			array(
 				'name' => 'Hide Lower Section',
 				'desc' => 'This section normally contains the Flickr, News and Events widgets. The footer will not be hidden',
 				'id'   => $prefix.'hide_fold',
 				'type' => 'checkbox',
 			),
-				array(
-					'name' => 'Stylesheet',
-					'desc' => '',
-					'id' => $prefix.'stylesheet',
-					'type' => 'file',
-				),
+            array(
+                'name' => 'Stylesheet',
+                'desc' => '',
+                'id' => $prefix.'stylesheet',
+                'type' => 'file',
+            ),
 		);
 	}
 }

@@ -177,11 +177,9 @@ Config::$theme_settings = array(
 			'value'       => $theme_options['events_max_items'],
 			'default'     => 4,
 			'choices'     => array(
-				'1' => 1,
-				'2' => 2,
-				'3' => 3,
-				'4' => 4,
-				'5' => 5,
+				'4'  => 4,
+				'8'  => 8,
+				'12' => 12,
 			),
 		)),
 		new TextField(array(

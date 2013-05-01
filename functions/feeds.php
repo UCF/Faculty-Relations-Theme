@@ -240,26 +240,46 @@ function display_flickr($header='h2'){
 function display_events($header='h2'){?>
 	<?php $options = get_option(THEME_OPTIONS_NAME);?>
 	<?php $count   = $options['events_max_items']?>
-	<?php $events  = get_events(0, ($count) ? $count : 3);?>
+	<?php $events  = get_events(0, ($count) ? $count : 8);?>
 	<?php if(count($events)):?>
-		<<?=$header?>><a href="<?=$events[0]->get_feed()->get_link()?>"><?=$events[0]->get_feed()->get_title()?></a></<?=$header?>>
-		<table class="events">
-			<?php foreach($events as $item):?>
-			<tr class="item">
-				<td class="date">
-					<?php
-						$month = $item->get_date("M");
-						$day   = $item->get_date("j");
-					?>
-					<div class="month"><?=$month?></div>
-					<div class="day"><?=$day?></div>
-				</td>
-				<td class="title">
-					<a href="<?=$item->get_link()?>" class="wrap ignore-external"><?=$item->get_title()?></a>
-				</td>
-			</tr>
+        <div class="row">
+			<?php foreach($events as $key => $item):?>
+            <?php $key++; ?>
+            <?php $link = $item->get_link(); ?>
+            <div class="span3">
+                <div class="event">
+                    <a href="<?=$item->get_link()?>">
+                        <div class="date">
+                            <?php
+                            $month = $item->get_date("M");
+                            $day   = $item->get_date("j");
+                            $year  = $item->get_date("Y");
+                            ?>
+                            <img src="<?=THEME_IMG_URL; ?>/events_calendar.gif" /> <span class="the_date"><?=strtoupper($month); ?> <?=$day; ?>, <?=$year; ?></span>
+                        </div>
+                        <div class="title">
+                            <?=$item->get_title(); ?>
+                        </div>
+                    </a>
+                    <div class="location">
+                        <?php
+                            $location_group = $item->get_item_tags('http://events.ucf.edu', 'location');
+                            $location = $location_group[0][child]['http://events.ucf.edu']['name'][0]['data'];
+                            $loc_link = $location_group[0][child]['http://events.ucf.edu']['mapurl'][0]['data'];
+                        ?>
+                        <a href="<?=$loc_link; ?>"><?=strtoupper($location); ?></a>
+                    </div>
+                </div>
+            </div>
+            <?php if($key % 4 == 0): ?>
+        </div>
+                <?php if($key < count($events)): ?>
+        <div class="row">
+                <?php endif; ?>
+            <?php endif; ?>
+
 			<?php endforeach;?>
-		</table>
+		</div>
 	<?php else:?>
 		<p>Unable to fetch events</p>
 	<?php endif;?>

@@ -253,6 +253,7 @@ class ResourceLink extends CustomPostType{
         $new_item       = 'New Resource Link',
         $use_title      = True,
         $use_editor     = False,
+        $use_order      = True,
         $use_shortcode  = True,
         $use_metabox    = True,
         $taxonomies     = array('post_tag', 'category');

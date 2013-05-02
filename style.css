@@ -129,7 +129,16 @@ select#UCFHBHeaderLinks {
 .news .item a{font-weight: normal; text-decoration: none; color: #333;}
 .news .item a:hover{text-decoration: underline; color: #ed1c24;}
 
-.person-picture-wrap { margin-bottom: 20px !important; }
+.person-picture-wrap { padding: 6px; border: 1px solid #e6e6e6;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;}
+.person-picture-wrap img{display: block; margin-left: auto; margin-right: auto;}
+.person-picture-wrap .name{font-size: 16px; font-weight: bold; line-height: 32px;}
+.person-picture-wrap .title,
+.person-picture-wrap .phone,
+.person-picture-wrap .email{font-size: 11px; font-weight: bold; line-height: 14px; color: #7c7c7c;}
+.person-picture-wrap .description{margin-top: 7px; font-size: 11px; line-height: 14px; color: #000;}
 
 .post-type-search {margin-top:1em;}
 .post-type-search-result-highlight {background-color:yellow;border:1px solid #ddd;}

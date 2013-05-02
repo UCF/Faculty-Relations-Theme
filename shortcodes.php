@@ -114,8 +114,6 @@ function sc_publication($attr, $content=null){
 }
 add_shortcode('publication', 'sc_publication');
 
-
-
 function sc_person_picture_list($atts) {
 	$atts['type']	= ($atts['type']) ? $atts['type'] : null;
 	$row_size 		= ($atts['row_size']) ? (intval($atts['row_size'])) : 5;
@@ -142,8 +140,6 @@ function sc_person_picture_list($atts) {
 	foreach($people as $person) {
 		
 		$image_url = get_featured_image_url($person->ID);
-		
-		$link = ($person->post_content != '') ? True : False;
 		if( ($count % $row_size) == 0) {
 			if($count > 0) {
 				?></div><?
@@ -152,12 +148,15 @@ function sc_person_picture_list($atts) {
 		}
 		
 		?>
-		<div class="span2 person-picture-wrap">
-			<? if($link) {?><a href="<?=get_permalink($person->ID)?>"><? } ?>
-				<img src="<?=$image_url ? $image_url : get_bloginfo('stylesheet_directory').'/static/img/no-photo.jpg'?>" />
-				<div class="name"><?=Person::get_name($person)?></div>
-				<div class="title"><?=get_post_meta($person->ID, 'person_jobtitle', True)?></div>
-				<? if($link) {?></a><?}?>
+		<div class="span3">
+            <div class="person-picture-wrap">
+                <img src="<?=$image_url ? $image_url : get_bloginfo('stylesheet_directory').'/static/img/no-photo.jpg'?>" />
+                <div class="name"><?=Person::get_name($person)?></div>
+                <div class="title"><?=get_post_meta($person->ID, 'person_jobtitle', True)?></div>
+                <div class="phone"><?=get_post_meta($person->ID, 'person_phones', True)?></div>
+                <div class="email"><?=get_post_meta($person->ID, 'person_email', True)?></div>
+                <div class="description"><?=$person->post_content?></div>
+            </div>
 		</div>
 		<?
 		$count++;

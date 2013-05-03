@@ -77,7 +77,9 @@ select#UCFHBHeaderLinks {
 #header .social.menu.horizontal li:after{content: "";}
 
 #menu-background{background-color: #fdde60;}
-#header-menu a {color: #000; font-size: 15px;}
+#header-menu a {color: #000; font-size: 13px; font-family: Helvetica, Arial, sans-serif;}
+#header-menu {margin-top: 5px;}
+#header-menu.menu.horizontal{padding-top: 0;}
 #header-menu.menu.horizontal li:after{content: none;}
 
 #footer-menu{ }
@@ -106,12 +108,12 @@ select#UCFHBHeaderLinks {
 }
 
 #events .date{position: relative;}
-#events .date .the_date{position: absolute; bottom: 0; padding: 0; margin-left: 10px; color: #666; font-size: 18px; line-height: 16px; font-weight: bold;}
+#events .date .the_date{font-family: Helvetica, Arial, sans-serif;position: absolute; bottom: 0; padding: 0; margin-left: 10px; color: #666; font-size: 18px; line-height: 16px; font-weight: bold;}
 
-#events .title{font-size: 18px; font-weight: bold; color: #000; text-align: left; margin-top: 5px;}
+#events .title{font-family: 'TrocchiBold', Georgia, serif; font-size: 18px; font-weight: normal; color: #000; text-align: left; margin-top: 10px;}
 #events .title .wrap{display: block; max-height: 50px; overflow: hidden;}
-
-#events .location a{font-size: 14px; font-weight: bold; color: #888}
+#events .location{margin-top: 10px; }
+#events .location a{font-family: "Helvetica", "Arial", "sans-serif"; font-size: 14px; font-weight: normal; color: #888}
 
 .news,
 .news .item,
@@ -159,11 +161,24 @@ select#UCFHBHeaderLinks {
 
 .container.wide {width: 100%;}
 
-#home-description{background-color: #ddd; font-size: 25px; line-height: 35px; color: #737373; padding-top: 10px; padding-bottom: 10px;}
+#home-description{background-color: #ddd; font-size: 25px; font-weight: 400; font-family: 'TrocchiRegular', Georgia, serif; line-height: 35px; color: #737373; padding-top: 10px; padding-bottom: 10px;}
 
-#events-header{background-color: #fdde60; font-size: 20px;}
+#events-header{font-weight: 400; font-family: 'TrocchiRegular', Georgia, serif; background-color: #fdde60; font-size: 20px;}
 #events-header .container{margin-top: 20px; padding-top: 10px; padding-bottom: 10px;}
+#more_events a {float: right; color: #ff0000; text-decoration: underline;}
 
 #home .home-links{margin-top: 20px;}
 #home .home-links .side-bar{border-right: solid 1px #ffd333;}
-#home .home-links .home-link{text-align: center;}
+#home .home-links .home-link{text-align: center; padding-left: 55px; padding-right: 55px;}
+.home-link .home-link-title{margin-top: 7px; margin-bottom: 7px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-weight: bold; font-size: 20px;}
+.home-link .home-link-desc{font-family: Georgia, Times, "Times New Roman", serif; font-weight: normal; font-size: 14px;}
+
+.resourcelink-list {margin-left: 0;}
+.resourcelink-list .resource-link{display: block; background-color: #fff6d2; padding: 5px; margin-top: 5px;}
+.resourcelink-list .resource-link a{ color: #000;}
+
+#header h1 a {font-weight: 400; font-family: 'TrocchiRegular', Georgia, serif;}
+article h1, h2, h3, p{font-weight: 400; font-family: 'TrocchiRegular', Georgia, serif;}
+article h2{margin-top: 35px;}
+article h3, h4{margin-top: 20px;}
+.menu.horizontal li {margin-bottom: 5px;}

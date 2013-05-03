@@ -279,6 +279,9 @@ function display_events($header='h2'){?>
                 <?php endif; ?>
 			<?php endforeach;?>
 		</div>
+        <div class="row">
+            <div id="more_events" class="span12"><a href="<?=$options['events_url'];?>">More Events ...</a></div>
+        </div>
 	<?php else:?>
         <div class="row">
             <div class="span12">

@@ -104,16 +104,17 @@ select#UCFHBHeaderLinks {
 #events .event{
     border-collapse:separate; position: relative;
     background-color: #fff7d5; font-weight: bold;
-    padding: 10px 10px; margin-top: 15px;
+    padding: 20px; margin-top: 15px;
 }
 
 #events .date{position: relative;}
-#events .date .the_date{font-family: Helvetica, Arial, sans-serif;position: absolute; bottom: 0; padding: 0; margin-left: 10px; color: #666; font-size: 18px; line-height: 16px; font-weight: bold;}
+#events .date .the_date{font-family: Helvetica, Arial, sans-serif;position: absolute; bottom: 0; padding: 0; margin-left: 10px; color: #666; font-size: 16px; line-height: 16px; font-weight: bold;}
 
-#events .title{font-family: 'TrocchiBold', Georgia, serif; font-size: 18px; font-weight: normal; color: #000; text-align: left; margin-top: 10px;}
+#events .title{font-family: 'TrocchiBold', Georgia, serif; font-size: 16px; font-weight: normal; color: #000; text-align: left; margin-top: 15px;}
 #events .title .wrap{display: block; max-height: 50px; overflow: hidden;}
 #events .location{margin-top: 10px; }
-#events .location a{font-family: "Helvetica", "Arial", "sans-serif"; font-size: 14px; font-weight: normal; color: #888}
+#events .location {font-family: "Helvetica", "Arial", "sans-serif"; font-size: 13px; line-height: 14px; font-weight: normal; color: #888;}
+#events .location a {color: #888;}
 
 .news,
 .news .item,
@@ -161,15 +162,16 @@ select#UCFHBHeaderLinks {
 
 .container.wide {width: 100%;}
 
-#home-description{background-color: #ddd; font-size: 25px; font-weight: 400; font-family: 'TrocchiRegular', Georgia, serif; line-height: 35px; color: #737373; padding-top: 10px; padding-bottom: 10px;}
+#home-description{background-color: #ddd; font-size: 25px; font-weight: 400; font-family: 'TrocchiRegular', Georgia, serif; line-height: 40px; color: #737373; padding-top: 20px; padding-bottom: 20px;}
 
 #events-header{font-weight: 400; font-family: 'TrocchiRegular', Georgia, serif; background-color: #fdde60; font-size: 20px;}
-#events-header .container{margin-top: 20px; padding-top: 10px; padding-bottom: 10px;}
+#events-header .container{margin-top: 30px; padding-top: 10px; padding-bottom: 10px;}
 #more_events a {float: right; color: #ff0000; text-decoration: underline;}
 
-#home .home-links{margin-top: 20px;}
+#home .home-links{margin-top: 30px;}
 #home .home-links .side-bar{border-right: solid 1px #ffd333;}
 #home .home-links .home-link{text-align: center; padding-left: 55px; padding-right: 55px;}
+#home .home-links .home-link a {color: #000;}
 .home-link .home-link-title{margin-top: 7px; margin-bottom: 7px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-weight: bold; font-size: 20px;}
 .home-link .home-link-desc{font-family: Georgia, Times, "Times New Roman", serif; font-weight: normal; font-size: 14px;}
 

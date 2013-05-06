@@ -296,3 +296,40 @@ if (typeof jQuery != 'undefined'){
 		Generic.PostTypeSearch($);
 	});
 }else{console.log('jQuery dependancy failed to load');}
+
+
+/**
+ * Set the same height for the home links and events
+ */
+
+$(window).load(function() {
+    boxes = $('.home-links .home-link-wrapper');
+    maxHeight = Math.max.apply(
+        Math, boxes.map(function() {
+            return $(this).outerHeight();
+        }).get());
+    $('.home-links .home-link').height(maxHeight);
+
+    boxes = $('#events .event-wrapper');
+    maxHeight = Math.max.apply(
+        Math, boxes.map(function() {
+            return $(this).outerHeight();
+        }).get());
+    $('#events .event').height(maxHeight);
+});
+
+$(window).resize(function() {
+    boxes = $('.home-links .home-link-wrapper');
+    maxHeight = Math.max.apply(
+        Math, boxes.map(function() {
+            return $(this).outerHeight();
+        }).get());
+    $('.home-links .home-link').height(maxHeight);
+
+    boxes = $('#events .event-wrapper');
+    maxHeight = Math.max.apply(
+        Math, boxes.map(function() {
+            return $(this).outerHeight();
+        }).get());
+    $('#events .event').height(maxHeight);
+});

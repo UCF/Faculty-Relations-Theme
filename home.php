@@ -25,9 +25,14 @@
                     <?php $key++; ?>
                     <div class="span4">
                         <div class="home-link <?php echo($key % 3 == 0 ? '': 'side-bar') ?>">
-                            <?php the_post_thumbnail(); ?>
-                            <div class="home-link-title"><?=the_title(); ?></div>
-                            <div class="home-link-desc"><?=get_post_meta(get_the_ID(), 'page_home_description', true); ?></div>
+                            <a href="<?=get_permalink(); ?>">
+                                <div class="home-link-wrapper">
+                                    <?php the_post_thumbnail(); ?>
+                                    <div class="home-link-title"><?=the_title(); ?></div>
+                                    <div class="home-link-desc"><?=get_post_meta(get_the_ID(), 'page_home_description', true); ?></div>
+                                    <div style="clear: both;"></div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                     <?php if($key % 3 == 0): ?>

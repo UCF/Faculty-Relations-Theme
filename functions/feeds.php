@@ -248,26 +248,32 @@ function display_events($header='h2'){?>
                 <?php $link = $item->get_link(); ?>
                 <div class="span3">
                     <div class="event">
-                        <a href="<?=$link?>">
-                            <div class="date">
+                        <div class="event-wrapper">
+                            <a href="<?=$link?>">
+                                <div class="date">
+                                    <?php
+                                    $month = $item->get_date("M");
+                                    $day   = $item->get_date("j");
+                                    $year  = $item->get_date("Y");
+                                    ?>
+                                    <img src="<?=THEME_IMG_URL; ?>/events_calendar.gif" /> <span class="the_date"><?=strtoupper($month); ?> <?=$day; ?>, <?=$year; ?></span>
+                                </div>
+                                <div class="title">
+                                    <?=$item->get_title(); ?>
+                                </div>
+                            </a>
+                            <div class="location">
                                 <?php
-                                $month = $item->get_date("M");
-                                $day   = $item->get_date("j");
-                                $year  = $item->get_date("Y");
+                                    $location_group = $item->get_item_tags('http://events.ucf.edu', 'location');
+                                    $location = $location_group[0][child]['http://events.ucf.edu']['name'][0]['data'];
+                                    $loc_link = $location_group[0][child]['http://events.ucf.edu']['mapurl'][0]['data'];
+                                    if($loc_link):
                                 ?>
-                                <img src="<?=THEME_IMG_URL; ?>/events_calendar.gif" /> <span class="the_date"><?=strtoupper($month); ?> <?=$day; ?>, <?=$year; ?></span>
+                                <a href="<?=$loc_link; ?>"><?=strtoupper($location); ?></a>
+                                <?php else:
+                                    echo strtoupper($location);
+                                endif;?>
                             </div>
-                            <div class="title">
-                                <?=$item->get_title(); ?>
-                            </div>
-                        </a>
-                        <div class="location">
-                            <?php
-                                $location_group = $item->get_item_tags('http://events.ucf.edu', 'location');
-                                $location = $location_group[0][child]['http://events.ucf.edu']['name'][0]['data'];
-                                $loc_link = $location_group[0][child]['http://events.ucf.edu']['mapurl'][0]['data'];
-                            ?>
-                            <a href="<?=$loc_link; ?>"><?=strtoupper($location); ?></a>
                         </div>
                     </div>
                 </div>

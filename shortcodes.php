@@ -152,11 +152,13 @@ function sc_person_picture_list($atts) {
             <div class="person-picture-wrap">
                 <div class="person">
                     <img src="<?=$image_url ? $image_url : get_bloginfo('stylesheet_directory').'/static/img/no-photo.jpg'?>" />
-                    <div class="name"><?=Person::get_name($person)?></div>
-                    <div class="title"><?=get_post_meta($person->ID, 'person_jobtitle', True)?></div>
-                    <div class="phone"><?=get_post_meta($person->ID, 'person_phones', True)?></div>
-                    <div class="email"><?=get_post_meta($person->ID, 'person_email', True)?></div>
-                    <div class="description"><?=$person->post_content?></div>
+                    <div class="person-info">
+                        <div class="name"><?=Person::get_name($person)?></div>
+                        <div class="title"><?=get_post_meta($person->ID, 'person_jobtitle', True)?></div>
+                        <div class="phone"><?=get_post_meta($person->ID, 'person_phones', True)?></div>
+                        <div class="email"><?=get_post_meta($person->ID, 'person_email', True)?></div>
+                        <div class="description"><?=$person->post_content?></div>
+                    </div>
                 </div>
             </div>
 		</div>

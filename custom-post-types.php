@@ -392,10 +392,12 @@ class ResourceLink extends CustomPostType{
         ob_start();
         ?>
         <ul class="nobullet <?php if($css_classes):?><?=$css_classes?><?php else:?><?=$class->options('name')?>-list<?php endif;?>">
-            <?php foreach($objects as $o):?>
+            <?php foreach($objects as $o): $url = ResourceLink::get_url($o);?>
+                <a href="<?=$url; ?>">
                 <li class="resource-link <?=$class_name::get_document_application($o)?>">
-                    <i class="icon-circle-arrow-right"></i> <?=$class->toHTML($o)?>
+                    <i class="icon-circle-arrow-right"></i> <?=$class->get_title($o)?>
                 </li>
+                </a>
             <?php endforeach;?>
         </ul>
         <?php

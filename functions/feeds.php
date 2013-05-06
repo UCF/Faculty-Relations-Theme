@@ -277,14 +277,13 @@ function display_events($header='h2'){?>
                         </div>
                     </div>
                 </div>
-                <?php if($key % 4 == 0): ?>
+                <?php if($key % 4 == 0 || $key == count($events)): ?>
         </div>
                     <?php if($key < count($events)): ?>
         <div class="row">
                     <?php endif; ?>
                 <?php endif; ?>
 			<?php endforeach;?>
-		</div>
         <div class="row">
             <div id="more_events" class="span12"><a href="<?=$options['events_url'];?>">More Events ...</a></div>
         </div>

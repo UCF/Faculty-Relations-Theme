@@ -50,8 +50,8 @@
         <div id="header-background" class="wide">
             <div class="container">
                 <div class="row">
-                    <div id="header">
-                        <h1 class="span9"><a href="<?=bloginfo('url')?>"><?=bloginfo('name')?></a></h1>
+                    <div id="header" class="span9">
+                        <h1><a href="<?=bloginfo('url')?>"><?=bloginfo('name')?></a></h1>
                         <?php $options = get_option(THEME_OPTIONS_NAME);?>
                         <?php if($options['facebook_url'] or $options['twitter_url']):?>
                         <ul class="social menu horizontal span3">

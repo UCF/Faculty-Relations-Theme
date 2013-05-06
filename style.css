@@ -117,7 +117,7 @@ select#UCFHBHeaderLinks {
 #events .title{font-family: 'TrocchiBold', Georgia, serif; font-size: 16px; font-weight: normal; color: #000; text-align: left; margin-top: 15px;}
 #events .title .wrap{display: block; max-height: 50px; overflow: hidden;}
 #events .location{margin-top: 10px; }
-#events .location {font-family: "Helvetica", "Arial", "sans-serif"; font-size: 13px; line-height: 14px; font-weight: normal; color: #888;}
+#events .location {font-family: "Helvetica", "Arial", "sans-serif"; font-size: 12px; line-height: 14px; font-weight: normal; color: #888;}
 #events .location a {color: #888;}
 
 .news,
@@ -185,10 +185,12 @@ select#UCFHBHeaderLinks {
 .resourcelink-list .resource-link a{ color: #000;}
 
 #header h1 a {font-weight: 400; font-family: 'TrocchiRegular', Georgia, serif;}
+#header h1 a:hover {color: #fff;}
+#header {margin-bottom: 0; margin-top: 10px; padding-bottom: 0px}
 article h1, h2, h3, p{font-weight: 400; font-family: 'TrocchiRegular', Georgia, serif;}
 article h2{margin-top: 35px;}
 article h3, h4{margin-top: 20px;}
-.menu.horizontal li {margin-bottom: 5px;}
+#header-menu.menu.horizontal li {margin-bottom: 5px; margin-right: 9px;}
 
 /**
  * Document Search
@@ -227,6 +229,6 @@ article h3, h4{margin-top: 20px;}
 
 @media (max-width: 480px) {
     #menu-background {
-        background-color: #fff;
+        background-color: #ffc907;
     }
 }

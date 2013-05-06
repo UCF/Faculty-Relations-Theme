@@ -159,17 +159,6 @@ Config::$theme_settings = array(
 			),
 			'value'       => $theme_options['enable_events'],
 		)),
-		new RadioField(array(
-			'name'        => 'Enable Events on Search Page',
-			'id'          => THEME_OPTIONS_NAME.'[enable_search_events]',
-			'description' => 'Display events on the search results page.',
-			'value'       => $theme_options['enable_search_events'],
-			'default'     => 1,
-			'choices'     => array(
-				'On'  => 1,
-				'Off' => 0,
-			),
-		)),
 		new SelectField(array(
 			'name'        => 'Events Max Items',
 			'id'          => THEME_OPTIONS_NAME.'[events_max_items]',
@@ -264,13 +253,42 @@ Config::$theme_settings = array(
 			'description' => 'Your organization\'s name',
 			'value'       => $theme_options['organization_name'],
 		)),
-		new SelectField(array(
-			'name'        => 'Home Image',
-			'id'          => THEME_OPTIONS_NAME.'[site_image]',
-			'description' => 'Image to feature on the homepage.  Select any image uploaded to the <a href="'.get_admin_url().'upload.php">media gallery</a> or <a href="'.get_admin_url().'media-new.php">upload a new image</a>.',
-			'choices'     => get_image_choices(),
-			'value'       => $theme_options['site_image'],
-		)),
+        new TextField(array(
+            'name'        => 'Street Address',
+            'id'          => THEME_OPTIONS_NAME.'[street_address]',
+            'description' => 'Your organization\'s street address',
+            'value'       => $theme_options['street_address'],
+        )),
+        new TextField(array(
+            'name'        => 'City',
+            'id'          => THEME_OPTIONS_NAME.'[city_address]',
+            'description' => 'The city your organization is located',
+            'value'       => $theme_options['city_address'],
+        )),
+        new TextField(array(
+            'name'        => 'State',
+            'id'          => THEME_OPTIONS_NAME.'[state_address]',
+            'description' => 'The state your organization is located',
+            'value'       => $theme_options['state_address'],
+        )),
+        new TextField(array(
+            'name'        => 'Zip',
+            'id'          => THEME_OPTIONS_NAME.'[zip_address]',
+            'description' => 'The zip your organization is located',
+            'value'       => $theme_options['zip_address'],
+        )),
+        new TextField(array(
+            'name'        => 'Phone Number',
+            'id'          => THEME_OPTIONS_NAME.'[phone_number]',
+            'description' => 'Your organization\'s phone number',
+            'value'       => $theme_options['phone_number'],
+        )),
+        new TextField(array(
+            'name'        => 'Fax Number',
+            'id'          => THEME_OPTIONS_NAME.'[fax_number]',
+            'description' => 'Your organization\'s name',
+            'value'       => $theme_options['fax_number'],
+        )),
 		new TextareaField(array(
 			'name'        => 'Site Description',
 			'id'          => THEME_OPTIONS_NAME.'[site_description]',

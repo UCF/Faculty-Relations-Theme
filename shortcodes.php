@@ -186,7 +186,10 @@ function sc_post_type_search($params=array(), $content='') {
 		'order'                  => 'ASC',
 		'show_sorting'           => True,
 		'default_sorting'        => 'term',
-		'show_sorting'           => True
+		'show_sorting'           => True,
+		'meta_key'               => '',
+		'meta_value'             => '',
+        'column_class'           => ''
 	);
 
 	$params = ($params === '') ? $defaults : array_merge($defaults, $params);
@@ -214,7 +217,7 @@ function sc_post_type_search($params=array(), $content='') {
 	// Format is array(post->ID=>terms) where terms include the post title
 	// as well as all associated tag names
 	$search_data = array();
-	foreach(get_posts(array('numberposts' => -1, 'post_type' => $params['post_type_name'])) as $post) {
+	foreach(get_posts(array('numberposts' => -1, 'post_type' => $params['post_type_name'], 'meta_key' => $params['meta_key'], 'meta_value' => $params['meta_value'])) as $post) {
 		$search_data[$post->ID] = array($post->post_title);
 		foreach(wp_get_object_terms($post->ID, 'post_tag') as $term) {
 			$search_data[$post->ID][] = $term->name;
@@ -245,6 +248,8 @@ function sc_post_type_search($params=array(), $content='') {
 					'terms'    => $term->term_id
 				)
 			),
+            'meta_key'    => $params['meta_key'],
+            'meta_value'  => $params['meta_value'],
 			'orderby'     => $params['order_by'],
 			'order'       => $params['order']
 		));
@@ -262,7 +267,9 @@ function sc_post_type_search($params=array(), $content='') {
 		'numberposts' => -1,
 		'post_type'   => $params['post_type_name'],
 		'orderby'     => 'title',
-		'order'       => 'alpha'
+		'order'       => 'alpha',
+        'meta_key'    => $params['meta_key'],
+        'meta_value'  => $params['meta_value']
 	));
 	foreach($by_alpha_posts as $post) {
 		if(preg_match('/([a-zA-Z])/', $post->post_title, $matches) == 1) {
@@ -331,10 +338,10 @@ function sc_post_type_search($params=array(), $content='') {
 									<? $start = $column_index * $posts_per_column; ?>
 									<? $end   = $start + $posts_per_column; ?>
 									<? if(count($section_posts) > $start) { ?>
-									<div class="<?=$params['column_width']?>">
+									<div class="<?=$params['column_width']?> <?=$params['column_class']; ?>">
 										<ul>
 										<? foreach(array_slice($section_posts, $start, $end) as $post) { ?>
-											<li data-post-id="<?=$post->ID?>"><?=$post_type->toHTML($post)?></li>
+											<li class="<?=$post_type->get_document_application($post); ?>" data-post-id="<?=$post->ID?>"><?=$post_type->toHTML($post)?></li>
 										<? } ?>
 										</ul>
 									</div>

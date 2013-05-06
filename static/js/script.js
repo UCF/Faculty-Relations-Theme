@@ -316,6 +316,13 @@ $(window).load(function() {
             return $(this).outerHeight();
         }).get());
     $('#events .event').height(maxHeight);
+
+    boxes = $('.person-picture-list .person');
+    maxHeight = Math.max.apply(
+        Math, boxes.map(function() {
+            return $(this).outerHeight();
+        }).get());
+    $('.person-picture-list .person-picture-wrap').height(maxHeight);
 });
 
 $(window).resize(function() {
@@ -332,4 +339,11 @@ $(window).resize(function() {
             return $(this).outerHeight();
         }).get());
     $('#events .event').height(maxHeight);
+
+    boxes = $('.person-picture-list .person');
+    maxHeight = Math.max.apply(
+        Math, boxes.map(function() {
+            return $(this).outerHeight();
+        }).get());
+    $('.person-picture-list .person-picture-wrap').height(maxHeight);
 });

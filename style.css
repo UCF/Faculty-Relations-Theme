@@ -139,7 +139,8 @@ select#UCFHBHeaderLinks {
 .person-picture-wrap { padding: 6px; border: 1px solid #e6e6e6;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
-    border-radius: 3px;}
+    border-radius: 3px;
+    margin-top: 10px;}
 .person-picture-wrap img{display: block; margin-left: auto; margin-right: auto;}
 .person-picture-wrap .name{font-size: 16px; font-weight: bold; line-height: 32px;}
 .person-picture-wrap .title,

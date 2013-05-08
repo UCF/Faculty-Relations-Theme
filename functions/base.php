@@ -1006,18 +1006,20 @@ function sc_object_list($attrs, $options = array()){
 	
 	foreach($taxonomies as $tax){
 		$terms = $params[$tax];
-		$terms = trim(preg_replace('/\s+/', ' ', $terms));
-		$terms = explode(' ', $terms);
-		
-		if (array_key_exists($tax, $translate)){
-			$tax = $translate[$tax];
+		if($terms != null) {
+			$terms = trim(preg_replace('/\s+/', ' ', $terms));
+			$terms = explode(' ', $terms);
+			
+			if (array_key_exists($tax, $translate)){
+				$tax = $translate[$tax];
+			}
+			
+			$tax_queries[] = array(
+				'taxonomy' => $tax,
+				'field' => 'slug',
+				'terms' => $terms,
+			);
 		}
-		
-		$tax_queries[] = array(
-			'taxonomy' => $tax,
-			'field' => 'slug',
-			'terms' => $terms,
-		);
 	}
 	
 	# perform query

@@ -408,7 +408,7 @@ if ($theme_options['bootstrap_enable_responsive'] == 1) {
 
 array_push(Config::$styles,	
 	plugins_url( 'gravityforms/css/forms.css' ),
-    THEME_FONT_URL.'/trocchi-fontfacekit/stylesheet.css',
+    'http://fonts.googleapis.com/css?family=Trocchi',
 	THEME_CSS_URL.'/webcom-base.css', 
 	get_bloginfo('stylesheet_url')
 );

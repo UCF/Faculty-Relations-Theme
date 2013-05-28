@@ -2,7 +2,7 @@
 Theme Name: Faculty Relations Theme
 Author: UCF Web Communications
 Github Theme URI: https://github.com/UCF/Faculty-Relations-Theme.git
-Version: v1.0.2
+Version: v1.0.3
 */
 
 body {
@@ -119,7 +119,7 @@ select#UCFHBHeaderLinks {
 #events .date{position: relative;}
 #events .date .the_date{font-family: Helvetica, Arial, sans-serif;position: absolute; bottom: 0; padding: 0; margin-left: 10px; color: #666; font-size: 16px; line-height: 16px; font-weight: bold;}
 
-#events .title{font-family: 'TrocchiBold', Georgia, serif; font-size: 16px; font-weight: normal; color: #000; text-align: left; margin-top: 15px;}
+#events .title{font-family: 'Trocchi', Georgia, serif; font-size: 16px; font-weight: bold; color: #000; text-align: left; margin-top: 15px;}
 #events .title .wrap{display: block; max-height: 50px; overflow: hidden;}
 #events .location{margin-top: 10px; }
 #events .location {font-family: "Helvetica", "Arial", "sans-serif"; font-size: 12px; line-height: 14px; font-weight: normal; color: #888;}
@@ -173,9 +173,9 @@ select#UCFHBHeaderLinks {
 
 .container.wide {width: 100%;}
 
-#home-description{background-color: #ddd; font-size: 25px; font-weight: 400; font-family: 'TrocchiRegular', Georgia, serif; line-height: 40px; color: #737373; padding-top: 20px; padding-bottom: 20px;}
+#home-description{background-color: #ddd; font-size: 25px; font-weight: 400; font-family: 'Trocchi', Georgia, serif; line-height: 40px; color: #737373; padding-top: 20px; padding-bottom: 20px;}
 
-#events-header{font-weight: 400; font-family: 'TrocchiRegular', Georgia, serif; background-color: #fdde60; font-size: 20px;}
+#events-header{font-weight: 400; font-family: 'Trocchi', Georgia, serif; background-color: #fdde60; font-size: 20px;}
 #events-header .container{margin-top: 30px; padding-top: 10px; padding-bottom: 10px;}
 #more_events {margin-top: 10px;}
 #more_events a {float: right; color: #ff0000; text-decoration: underline;}
@@ -191,10 +191,10 @@ select#UCFHBHeaderLinks {
 .resourcelink-list .resource-link{display: block; background-color: #fff6d2; padding: 5px; margin-top: 5px;}
 .resourcelink-list a{ color: #000;}
 
-#header h1 a {font-weight: 400; font-family: 'TrocchiRegular', Georgia, serif;}
+#header h1 a {font-weight: 400; font-family: 'Trocchi', Georgia, serif;}
 #header h1 a:hover {color: #fff;}
 #header {margin-bottom: 0; margin-top: 10px;}
-article h1, h2, h3 {font-weight: 400; font-family: 'TrocchiRegular', Georgia, serif;}
+article h1, h2, h3 {font-weight: 400; font-family: 'Trocchi', Georgia, serif;}
 p{font-weight: 400; font-family: Georgia, serif;}
 article h2{margin-top: 35px;}
 article h3, h4{margin-top: 20px;}

@@ -446,7 +446,7 @@ function jquery_in_header() {
 
 add_action('wp_enqueue_scripts', 'jquery_in_header');
 
-function protocol_relative_attachment_url($url, $id) {
+function protocol_relative_attachment_url($url) {
     if (is_ssl()) {
         $url = str_replace('http://', 'https://', $url);
     }

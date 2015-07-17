@@ -175,7 +175,7 @@ select#UCFHBHeaderLinks {
 
 .container.wide {width: 100%;}
 
-#home-description{background-color: #ddd; font-size: 25px; font-weight: 400; font-family: 'Trocchi', Georgia, serif; line-height: 40px; color: #737373; padding-top: 20px; padding-bottom: 20px;}
+#home-description{background-color: #fff; font-size: 25px; font-weight: 400; font-family: 'Trocchi', Georgia, serif; line-height: 40px; color: #737373; padding-top: 20px; padding-bottom: 20px;}
 
 #events-header{font-weight: 400; font-family: 'Trocchi', Georgia, serif; background-color: #fdde60; font-size: 20px;}
 #events-header .container{margin-top: 30px; padding-top: 10px; padding-bottom: 10px;}

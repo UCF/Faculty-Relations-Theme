@@ -71,13 +71,10 @@ function __init__(){
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
 	));
-	foreach(Config::$styles as $style){Config::add_css($style);}
-	foreach(Config::$scripts as $script){Config::add_script($script);}
 
 	global $timer;
 	$timer = Timer::start();
 
-	wp_deregister_script('l10n');
 	set_defaults_for_options();
 }
 add_action('after_setup_theme', '__init__');
@@ -85,9 +82,6 @@ add_action('after_setup_theme', '__init__');
 
 
 # Set theme constants
-#define('DEBUG', True);                  # Always on
-#define('DEBUG', False);                 # Always off
-define('DEBUG', isset($_GET['debug'])); # Enable via get parameter
 define('THEME_URL', get_stylesheet_directory_uri());
 define('THEME_ADMIN_URL', get_admin_url());
 define('THEME_DIR', get_stylesheet_directory());
@@ -101,10 +95,10 @@ define('THEME_OPTIONS_GROUP', 'settings');
 define('THEME_OPTIONS_NAME', 'theme');
 define('THEME_OPTIONS_PAGE_TITLE', 'Theme Options');
 
-$theme_options = get_option(THEME_OPTIONS_NAME);
-define('GA_ACCOUNT', $theme_options['ga_account']);
-define('CB_UID', $theme_options['cb_uid']);
-define('CB_DOMAIN', $theme_options['cb_domain']);
+$theme_options = get_option( THEME_OPTIONS_NAME );
+define('GA_ACCOUNT', isset( $theme_options['ga_account'] ) ? $theme_options['ga_account'] : null);
+define('CB_UID', isset( $theme_options['cb_uid'] ) ? $theme_options['cb_uid'] : null );
+define('CB_DOMAIN', isset( $theme_options['cb_domain'] ) ? $theme_options['cb_domain'] : null);
 
 
 /**
@@ -138,14 +132,14 @@ Config::$theme_settings = array(
 			'id'          => THEME_OPTIONS_NAME.'[gw_verify]',
 			'description' => 'Example: <em>9Wsa3fspoaoRE8zx8COo48-GCMdi5Kd-1qFpQTTXSIw</em>',
 			'default'     => null,
-			'value'       => $theme_options['gw_verify'],
+			'value'       => isset( $theme_options['gw_verify'] ) ? $theme_options['gw_verify'] : '',
 		)),
 		new TextField(array(
 			'name'        => 'Google Analytics Account',
 			'id'          => THEME_OPTIONS_NAME.'[ga_account]',
 			'description' => 'Example: <em>UA-9876543-21</em>. Leave blank for development.',
 			'default'     => null,
-			'value'       => $theme_options['ga_account'],
+			'value'       => isset( $theme_options['ga_account'] ) ? $theme_options['ga_account'] : '',
 		)),
 	),
 	'Events' => array(
@@ -231,7 +225,7 @@ Config::$theme_settings = array(
 			'id'          => THEME_OPTIONS_NAME.'[search_domain]',
 			'description' => 'Domain to use for the built-in google search.  Useful for development or if the site needs to search a domain other than the one it occupies. Example: <em>some.domain.com</em>',
 			'default'     => null,
-			'value'       => $theme_options['search_domain'],
+			'value'       => isset( $theme_options['search_domain'] ) ? $theme_options['search_domain'] : '',
 		)),
 		new TextField(array(
 			'name'        => 'Search Results Per Page',
@@ -246,56 +240,56 @@ Config::$theme_settings = array(
 			'name'        => 'Contact Email',
 			'id'          => THEME_OPTIONS_NAME.'[site_contact]',
 			'description' => 'Contact email address that visitors to your site can use to contact you.',
-			'value'       => $theme_options['site_contact'],
+			'value'       => isset( $theme_options['site_contact'] ) ? $theme_options['site_contact'] : '',
 		)),
 		new TextField(array(
 			'name'        => 'Organization Name',
 			'id'          => THEME_OPTIONS_NAME.'[organization_name]',
 			'description' => 'Your organization\'s name',
-			'value'       => $theme_options['organization_name'],
+			'value'       => isset( $theme_options['organization_name'] ) ? $theme_options['organization_name'] : '',
 		)),
         new TextField(array(
             'name'        => 'Street Address',
             'id'          => THEME_OPTIONS_NAME.'[street_address]',
             'description' => 'Your organization\'s street address',
-            'value'       => $theme_options['street_address'],
+            'value'       => isset( $theme_options['street_address'] ) ? $theme_options['street_address'] : '',
         )),
         new TextField(array(
             'name'        => 'City',
             'id'          => THEME_OPTIONS_NAME.'[city_address]',
             'description' => 'The city your organization is located',
-            'value'       => $theme_options['city_address'],
+            'value'       => isset( $theme_options['city_address'] ) ? $theme_options['city_address'] : '',
         )),
         new TextField(array(
             'name'        => 'State',
             'id'          => THEME_OPTIONS_NAME.'[state_address]',
             'description' => 'The state your organization is located',
-            'value'       => $theme_options['state_address'],
+            'value'       => isset( $theme_options['state_address'] ) ? $theme_options['state_address'] : '',
         )),
         new TextField(array(
             'name'        => 'Zip',
             'id'          => THEME_OPTIONS_NAME.'[zip_address]',
             'description' => 'The zip your organization is located',
-            'value'       => $theme_options['zip_address'],
+            'value'       => isset( $theme_options['zip_address'] ) ? $theme_options['zip_address'] : '',
         )),
         new TextField(array(
             'name'        => 'Phone Number',
             'id'          => THEME_OPTIONS_NAME.'[phone_number]',
             'description' => 'Your organization\'s phone number',
-            'value'       => $theme_options['phone_number'],
+            'value'       => isset( $theme_options['phone_number'] ) ? $theme_options['phone_number'] : '',
         )),
         new TextField(array(
             'name'        => 'Fax Number',
             'id'          => THEME_OPTIONS_NAME.'[fax_number]',
             'description' => 'Your organization\'s name',
-            'value'       => $theme_options['fax_number'],
+            'value'       => isset( $theme_options['fax_number'] ) ? $theme_options['fax_number'] : '',
         )),
 		new TextareaField(array(
 			'name'        => 'Site Description',
 			'id'          => THEME_OPTIONS_NAME.'[site_description]',
 			'description' => 'A quick description of your organization and its role.',
 			'default'     => 'This is the site\'s default description, change or remove it on the <a href="'.get_admin_url().'admin.php?page=theme-options#site">theme options page</a> in the admin site.',
-			'value'       => $theme_options['site_description'],
+			'value'       => isset( $theme_options['site_description'] ) ? $theme_options['site_description'] : '',
 		)),
 	),
 	'Social' => array(
@@ -315,20 +309,20 @@ Config::$theme_settings = array(
 			'id'          => THEME_OPTIONS_NAME.'[fb_admins]',
 			'description' => 'Comma seperated facebook usernames or user ids of those responsible for administrating any facebook pages created from pages on this site. Example: <em>592952074, abe.lincoln</em>',
 			'default'     => null,
-			'value'       => $theme_options['fb_admins'],
+			'value'       => isset( $theme_options['fb_admins'] ) ? $theme_options['fb_admins'] : '',
 		)),
 		new TextField(array(
 			'name'        => 'Facebook URL',
 			'id'          => THEME_OPTIONS_NAME.'[facebook_url]',
 			'description' => 'URL to the facebook page you would like to direct visitors to.  Example: <em>https://www.facebook.com/CSBrisketBus</em>',
 			'default'     => null,
-			'value'       => $theme_options['facebook_url'],
+			'value'       => isset( $theme_options['facebook_url'] ) ? $theme_options['facebook_url'] : '',
 		)),
 		new TextField(array(
 			'name'        => 'Twitter URL',
 			'id'          => THEME_OPTIONS_NAME.'[twitter_url]',
 			'description' => 'URL to the twitter user account you would like to direct visitors to.  Example: <em>http://twitter.com/csbrisketbus</em>',
-			'value'       => $theme_options['twitter_url'],
+			'value'       => isset( $theme_options['twitter_url'] ) ? $theme_options['twitter_url'] : '',
 		)),
 		new RadioField(array(
 			'name'        => 'Enable Flickr',
@@ -429,7 +423,7 @@ Config::$scripts = array(
 Config::$metas = array(
 	array('charset' => 'utf-8',),
 );
-if ($theme_options['gw_verify']){
+if ( isset( $theme_options['gw_verify'] ) && ! empty( $theme_options['gw_verify'] ) ){
 	Config::$metas[] = array(
 		'name'    => 'google-site-verification',
 		'content' => htmlentities($theme_options['gw_verify']),
@@ -445,6 +439,14 @@ function jquery_in_header() {
 }
 
 add_action('wp_enqueue_scripts', 'jquery_in_header');
+
+function enqueue_assets() {
+	foreach(Config::$styles as $style){Config::add_css($style);}
+	foreach(Config::$scripts as $script){Config::add_script($script);}
+	wp_deregister_script('l10n');
+}
+
+add_action( 'wp_enqueue_scripts', 'enqueue_assets' );
 
 function protocol_relative_attachment_url($url) {
     if (is_ssl()) {

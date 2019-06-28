@@ -1,18 +1,18 @@
 <?php
 
 /**
- * Abstract class for defining custom taxonomies.  
- * 
+ * Abstract class for defining custom taxonomies.
+ *
  **/
 abstract class CustomTaxonomy {
 	public
 		$name			= 'custom_taxonomy',
-		
+
 		// Do not register the taxonomy with the post type here.
 		// Register it on the `taxonomies` attribute of the post type in
 		// custom-post-types.php
-		$object_type	= Array(), 
-		
+		$object_type	= Array(),
+
 		$general_name		    = 'Post Tags',
 		$singular_name      = 'Post Tag',
 		$search_items       = 'Search Tags',
@@ -25,7 +25,7 @@ abstract class CustomTaxonomy {
 		$add_new_item       = 'Add New Tag',
 		$new_item_name      = 'New Tag Name',
 		$menu_name          = NULL,
-		
+
 		$public                = True,
 		$show_in_name_menus    = NULL,
 		$show_ui               = NULL,
@@ -35,19 +35,19 @@ abstract class CustomTaxonomy {
 		$rewrite               = True,
 		$query_var             = NULL,
 		$capabilities          = Array();
-	
+
 	function __construct() {
 		if(is_null($this->show_in_name_menus)) $this->show_in_name_menus = $this->public;
 		if(is_null($this->show_ui)) $this->show_ui = $this->public;
 		if(is_null($this->show_tagcloud)) $this->show_tagcloud = $this->show_ui;
 		if(is_null($this->menu_name)) $this->menu_name = $this->general_name;
 	}
-	
+
 	public function options($key){
 		$vars = get_object_vars($this);
-		return $vars[$key];
+		return isset( $vars[$key] ) ? $vars[$key] : null;
 	}
-	
+
 	public function labels() {
 		return Array(
 				'name'                       => _x($this->options('general_name'), 'taxonomy general name'),
@@ -67,7 +67,7 @@ abstract class CustomTaxonomy {
 				'menu_name'                  => __($this->options('menu_name'))
 				);
 	}
-	
+
 	public function register() {
 		$args = Array(
 				'labels'                => $this->labels(),
@@ -106,8 +106,8 @@ class OrganizationalGroups extends CustomTaxonomy
 		$update_item        = 'Update Organizational Group',
 		$add_new_item       = 'Add New Organizational Group',
 		$new_item_name      = 'New Tag Organizational Group',
-		
+
 		$hierarchical = True;
-} // END class 
+} // END class
 
 ?>

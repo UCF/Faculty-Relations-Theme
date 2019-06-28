@@ -5,7 +5,7 @@
  * Create a javascript slideshow of each top level element in the
  * shortcode.  All attributes are optional, but may default to less than ideal
  * values.  Available attributes:
- * 
+ *
  * height     => css height of the outputted slideshow, ex. height="100px"
  * width      => css width of the outputted slideshow, ex. width="100%"
  * transition => length of transition in milliseconds, ex. transition="1000"
@@ -25,7 +25,7 @@ function sc_slideshow($attr, $content=null){
 	$html    = $content->childNodes->item(1);
 	$body    = $html->childNodes->item(0);
 	$content = $body->childNodes;
-	
+
 	# Find top level elements and add appropriate class
 	$items = array();
 	foreach($content as $item){
@@ -36,28 +36,30 @@ function sc_slideshow($attr, $content=null){
 			$items[] = $item->ownerDocument->saveXML($item);
 		}
 	}
-	
+
 	$animation = ($attr['animation']) ? $attr['animation'] : 'slide';
 	$height    = ($attr['height']) ? $attr['height'] : '100px';
 	$width     = ($attr['width']) ? $attr['width'] : '100%';
 	$tran_len  = ($attr['transition']) ? $attr['transition'] : 1000;
 	$cycle_len = ($attr['cycle']) ? $attr['cycle'] : 5000;
-	
+
 	ob_start();
 	?>
-	<div 
-		class="slideshow <?=$animation?>"
-		data-tranlen="<?=$tran_len?>"
-		data-cyclelen="<?=$cycle_len?>"
-		style="height: <?=$height?>; width: <?=$width?>;"
+	<div
+		class="slideshow <?php echo $animation; ?>"
+		data-tranlen="<?php echo $tran_len; ?>"
+		data-cyclelen="<?php echo $cycle_len; ?>"
+		style="height: <?php echo $height ?>; width: <?php echo $width; ?>;"
 	>
-		<?php foreach($items as $item):?>
-		<?=$item?>
-		<?php endforeach;?>
+	<?php
+	foreach($items as $item) {
+		echo $item;
+	}
+	?>
 	</div>
 	<?php
 	$html = ob_get_clean();
-	
+
 	return $html;
 }
 add_shortcode('slideshow', 'sc_slideshow');
@@ -67,9 +69,9 @@ function sc_search_form() {
 	ob_start();
 	?>
 	<div class="search">
-		<?get_search_form()?>
+		<?php get_search_form(); ?>
 	</div>
-	<?
+	<?php
 	return ob_get_clean();
 }
 add_shortcode('search_form', 'sc_search_form');
@@ -84,31 +86,31 @@ function sc_publication($attr, $content=null){
 	$pub      = @$attr['pub'];
 	$pub_name = @$attr['name'];
 	$pub_id   = @$attr['id'];
-	
+
 	if (!$pub and is_numeric($pub_id)){
 		$pub = get_post($pub);
 	}
 	if (!$pub and $pub_name){
 		$pub = get_page_by_title($pub_name, OBJECT, 'publication');
 	}
-	
+
 	$pub->url   = get_post_meta($pub->ID, "publication_url", True);
 	$pub->thumb = get_the_post_thumbnail($pub->ID, 'publication-thumb');
-	
+
 	ob_start(); ?>
-	
+
 	<div class="pub">
-		<a class="track pub-track" title="<?=$pub->post_title?>" data-toggle="modal" href="#pub-modal-<?=$pub->ID?>">
-			<?=$pub->thumb?>
-			<span><?=$pub->post_title?></span>
+		<a class="track pub-track" title="<?php echo $pub->post_title; ?>" data-toggle="modal" href="#pub-modal-<?php echo $pub->ID; ?>">
+			<?php echo $pub->thumb; ?>
+			<span><?php echo $pub->post_title; ?></span>
 		</a>
-		<p class="pub-desc"><?=$pub->post_content?></p>
-		<div class="modal hide fade" id="pub-modal-<?=$pub->ID?>" role="dialog" aria-labelledby="<?=$pub->post_title?>" aria-hidden="true">
-			<iframe src="<?=$pub->url?>" width="100%" height="100%" scrolling="no"></iframe>
+		<p class="pub-desc"><?php echo $pub->post_content; ?></p>
+		<div class="modal hide fade" id="pub-modal-<?php echo $pub->ID; ?>" role="dialog" aria-labelledby="<?php echo $pub->post_title; ?>" aria-hidden="true">
+			<iframe src="<?php echo $pub->url; ?>" width="100%" height="100%" scrolling="no"></iframe>
 			<a href="#" class="btn" data-dismiss="modal">Close</a>
 		</div>
 	</div>
-	
+
 	<?php
 	return ob_get_clean();
 }
@@ -123,51 +125,51 @@ function sc_person_picture_list($atts) {
 	$join			= ($atts['join']) ? $atts['join'] : 'or';
 	$people 		= sc_object_list(
 						array(
-							'type' => 'person', 
+							'type' => 'person',
 							'limit' => $limit,
 							'join' => $join,
-							'categories' => $categories, 
+							'categories' => $categories,
 							'org_groups' => $org_groups
-						), 
+						),
 						array(
 							'objects_only' => True,
 						));
-	
+
 	ob_start();
-	
-	?><div class="person-picture-list"><?
+
+	?><div class="person-picture-list"><?php
 	$count = 0;
 	foreach($people as $person) {
-		
+
 		$image_url = get_featured_image_url($person->ID);
 		if( ($count % $row_size) == 0) {
 			if($count > 0) {
-				?></div><?
+				?></div><?php
 			}
-			?><div class="row"><?
+			?><div class="row"><?php
 		}
-		
+
 		?>
 		<div class="span3">
             <div class="person-picture-wrap">
                 <div class="person">
-                    <img src="<?=$image_url ? $image_url : get_bloginfo('stylesheet_directory').'/static/img/no-photo.jpg'?>" />
+                    <img src="<?php echo $image_url ? $image_url : get_bloginfo('stylesheet_directory').'/static/img/no-photo.jpg'; ?>" />
                     <div class="person-info">
-                        <div class="name"><?=Person::get_name($person)?></div>
-                        <div class="title"><?=get_post_meta($person->ID, 'person_jobtitle', True)?></div>
-                        <div class="phone"><?=get_post_meta($person->ID, 'person_phones', True)?></div>
-                        <div class="email"><?=get_post_meta($person->ID, 'person_email', True)?></div>
-                        <div class="description"><?=$person->post_content?></div>
+                        <div class="name"><?php echo Person::get_name($person); ?></div>
+                        <div class="title"><?php echo get_post_meta($person->ID, 'person_jobtitle', True); ?></div>
+                        <div class="phone"><?php echo get_post_meta($person->ID, 'person_phones', True); ?></div>
+                        <div class="email"><?php echo get_post_meta($person->ID, 'person_email', True); ?></div>
+                        <div class="description"><?php echo $person->post_content; ?></div>
                     </div>
                 </div>
             </div>
 		</div>
-		<?
+		<?php
 		$count++;
 	}
 	?>	</div>
 	</div>
-	<?
+	<?php
 	return ob_get_clean();
 }
 add_shortcode('person-picture-list', 'sc_person_picture_list');
@@ -231,13 +233,13 @@ function sc_post_type_search($params=array(), $content='') {
 	<script type="text/javascript">
 		if(typeof PostTypeSearchDataManager != 'undefined') {
 			PostTypeSearchDataManager.register(new PostTypeSearchData(
-				<?=json_encode($params['column_count'])?>,
-				<?=json_encode($params['column_width'])?>,
-				<?=json_encode($search_data)?>
+				<?php echo json_encode($params['column_count']); ?>,
+				<?php echo json_encode($params['column_width']); ?>,
+				<?php echo json_encode($search_data); ?>
 			));
 		}
 	</script>
-	<?
+	<?php
 
 	// Split up this post type's posts by term
 	$by_term = array();
@@ -303,17 +305,17 @@ function sc_post_type_search($params=array(), $content='') {
 		<div class="post-type-search-header">
 			<form class="post-type-search-form" action="." method="get">
 				<label style="display:none;">Search</label>
-				<input type="text" class="span3" placeholder="<?=$params['default_search_text']?>" />
+				<input type="text" class="span3" placeholder="<?php echo $params['default_search_text']; ?>" />
 			</form>
 		</div>
 		<div class="post-type-search-results "></div>
-		<? if($params['show_sorting']) { ?>
+		<?php if($params['show_sorting']) : ?>
 		<div class="btn-group post-type-search-sorting">
-			<button class="btn<?if($params['default_sorting'] == 'term') echo ' active';?>"><i class="icon-list-alt"></i></button>
-			<button class="btn<?if($params['default_sorting'] == 'alpha') echo ' active';?>"><i class="icon-font"></i></button>
+			<button class="btn<?php if($params['default_sorting'] == 'term') echo ' active';?>"><i class="icon-list-alt"></i></button>
+			<button class="btn<?php if($params['default_sorting'] == 'alpha') echo ' active';?>"><i class="icon-font"></i></button>
 		</div>
-		<? } ?>
-	<?
+		<?php endif; ?>
+	<?php
 
 	foreach($sections as $id => $section) {
 		$hide = false;
@@ -330,36 +332,36 @@ function sc_post_type_search($params=array(), $content='') {
 				break;
 		}
 		?>
-		<div class="<?=$id?>"<? if($hide) echo ' style="display:none;"'; ?>>
-			<? foreach($section as $section_title => $section_posts) { ?>
-				<? if(count($section_posts) > 0 || $params['show_empty_sections']) { ?>
+		<div class="<?php echo $id; ?>"<?php if($hide) echo ' style="display:none;"'; ?>>
+			<?php foreach($section as $section_title => $section_posts) { ?>
+				<?php if(count($section_posts) > 0 || $params['show_empty_sections']) { ?>
 					<div>
-						<h3><?=esc_html($section_title)?></h3>
+						<h3><?php echo esc_html($section_title); ?></h3>
 						<div class="row">
-							<? if(count($section_posts) > 0) { ?>
-								<? $posts_per_column = intval((ceil(count($section_posts) / $params['column_count']))); ?>
-								<? foreach(range(0, $params['column_count'] - 1) as $column_index) { ?>
-									<? $start = $column_index * $posts_per_column; ?>
-									<? $end   = $posts_per_column; ?>
-									<? if(count($section_posts) > $start) { ?>
-									<div class="<?=$params['column_width']?> <?=$params['column_class']; ?>">
+							<?php if(count($section_posts) > 0) { ?>
+								<?php $posts_per_column = intval((ceil(count($section_posts) / $params['column_count']))); ?>
+								<?php foreach(range(0, $params['column_count'] - 1) as $column_index) { ?>
+									<?php $start = $column_index * $posts_per_column; ?>
+									<?php $end   = $posts_per_column; ?>
+									<?php if(count($section_posts) > $start) { ?>
+									<div class="<?php echo $params['column_width']; ?> <?php echo $params['column_class']; ?>">
 										<ul>
-										<? foreach(array_slice($section_posts, $start, $end) as $post) { ?>
-											<li class="<?=$post_type->get_document_application($post); ?>" data-post-id="<?=$post->ID?>"><?=$post_type->toHTML($post)?></li>
-										<? } ?>
+										<?php foreach(array_slice($section_posts, $start, $end) as $post) { ?>
+											<li class="<?php echo $post_type->get_document_application($post); ?>" data-post-id="<?php echo $post->ID; ?>"><?php echo $post_type->toHTML($post); ?></li>
+										<?php } ?>
 										</ul>
 									</div>
-									<? } ?>
-								<? } ?>
-							<? } ?>
+									<?php } ?>
+								<?php } ?>
+							<?php } ?>
 						</div>
 					</div>
-				<? } ?>
-			<? } ?>
+				<?php } ?>
+			<?php } ?>
 		</div>
-		<?
+		<?php
 	}
-	?> </div> <?
+	?> </div> <?php
 	return ob_get_clean();
 }
 add_shortcode('post-type-search', 'sc_post_type_search');
